@@ -1,0 +1,21 @@
+.RandomShowsDiv {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    gap: 50px;
+    justify-content: center;
+  }
+  
+  .fade-in-element {
+    opacity: 0;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+    transform: translateY(20px);
+  }
+  
+  .fade-in-element.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  

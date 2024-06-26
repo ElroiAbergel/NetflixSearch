@@ -1,0 +1,16 @@
+<div class="backgroundDiv">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <img style="padding-top:5px;" width="33" height="33" viewBox="0 0 33 35" fill="none"
+                src="assets/icon-2-removebg-preview.svg">
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="glowyText">Netflix Search</div>
+        </ng-template>
+    </p-menubar>
+    <div class="SearchDiv">
+        <input id="search" type="text" placeholder="Enter Movie name" pInputText class="p-inputtext serachinput">
+        <p-button severity="secondary" (click)="ScrollAndShowResults()"><i class='pi pi-search searchBtn' style="font-size: 5rem;"></i></p-button>
+    </div>
+</div>
+<app-results id = "resultsComponent" style = "display: none;"></app-results>
