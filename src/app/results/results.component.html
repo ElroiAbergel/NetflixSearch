@@ -2,11 +2,15 @@
     <div style="width: 100%; display: flex; justify-content: center; padding-top: 10px;">
       <h3 id="results">Results</h3>
     </div>
-    <div id="ResultsShowsDiv"class="RandomShowsDiv">
-        <ng-template pTemplate="header">
-          <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
-        </ng-template>
-        <p>Lorem ipsum dolor sit amet...</p>
+      <div  id="ResultsShowsDiv" class="RandomShowsDiv" >
+        <p-card *ngFor="let mediaItem of data;" [header]="mediaItem.title" [subheader]="mediaItem.type" [style]="{ width: '360px' , height:'600px'  }">
+          <ng-template pTemplate="header">
+              <img alt="Card" style="width: 100%; max-height: 400px; " [src]="mediaItem.Image_URL" />
+          </ng-template>
+          <p>
+          {{mediaItem.listed_in}}  
+          </p>
+      </p-card>
     </div>
   </div>
   
