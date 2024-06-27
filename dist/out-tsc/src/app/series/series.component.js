@@ -1,12 +1,11 @@
 import { __decorate } from "tslib";
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ResultsComponent } from '../results/results.component';
 let SeriesComponent = class SeriesComponent {
-    constructor(viewportScroller) {
-        this.viewportScroller = viewportScroller;
+    constructor() {
         this.items = [
             {
                 label: 'Home',
@@ -15,7 +14,7 @@ let SeriesComponent = class SeriesComponent {
             },
             {
                 label: 'Series',
-                icon: 'pi pi-fw pi-search',
+                icon: 'pi pi-fw pi-desktop',
                 url: '/series'
             },
             {
@@ -25,10 +24,23 @@ let SeriesComponent = class SeriesComponent {
             }
         ];
     }
-    scrollresults() {
-        this.viewportScroller.scrollToAnchor("results");
+    ScrollToResults(element) {
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    ScrollAndShowResults() {
+        let textinput = document.getElementById("search");
+        if (textinput && textinput.value) {
+            document.getElementById("resultsComponent")?.style.setProperty("display", "block");
+            this.results.loadResults(textinput.value, "series");
+            setTimeout(() => this.ScrollToResults(document.getElementById("results")), 3000);
+        }
     }
 };
+__decorate([
+    ViewChild(ResultsComponent, { static: false })
+], SeriesComponent.prototype, "results", void 0);
 SeriesComponent = __decorate([
     Component({
         selector: 'app-series',

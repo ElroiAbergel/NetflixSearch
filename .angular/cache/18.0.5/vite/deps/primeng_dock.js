@@ -1,17 +1,17 @@
 import {
   Tooltip,
   TooltipModule
-} from "./chunk-LG32M47C.js";
-import {
-  RouterLink,
-  RouterModule
-} from "./chunk-NHW2SBJC.js";
-import "./chunk-5AZMLKHN.js";
+} from "./chunk-RDMW2APH.js";
 import {
   DomHandler,
   Ripple,
   RippleModule
-} from "./chunk-NZGOU3LK.js";
+} from "./chunk-QREUBBW6.js";
+import {
+  RouterLink,
+  RouterModule
+} from "./chunk-K7E2HMCX.js";
+import "./chunk-V56TPC5U.js";
 import {
   CommonModule,
   NgClass,
@@ -19,13 +19,13 @@ import {
   NgIf,
   NgStyle,
   NgTemplateOutlet
-} from "./chunk-QRIBGA65.js";
+} from "./chunk-7UIHRV72.js";
 import {
   ObjectUtils,
   PrimeTemplate,
   SharedModule,
   UniqueComponentId
-} from "./chunk-RGCZI3FH.js";
+} from "./chunk-AP56LMP6.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -66,7 +66,7 @@ import {
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵviewQuery
-} from "./chunk-O7ZAVTJ3.js";
+} from "./chunk-V2Y6LCSP.js";
 
 // node_modules/primeng/fesm2022/primeng-dock.mjs
 var _c0 = ["list"];

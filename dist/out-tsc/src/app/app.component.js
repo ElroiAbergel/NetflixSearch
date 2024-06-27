@@ -17,7 +17,7 @@ AppComponent = __decorate([
     Component({
         selector: 'app-root',
         standalone: true,
-        imports: [RouterOutlet, MenubarModule, CardModule, DockModule, CommonModule, ButtonModule, ChartModule, HomeComponent],
+        imports: [RouterOutlet, MenubarModule, CardModule, DockModule, CommonModule, ButtonModule, ChartModule, HomeComponent,],
         templateUrl: 'app.component.html',
         styleUrl: './app.component.css',
     })

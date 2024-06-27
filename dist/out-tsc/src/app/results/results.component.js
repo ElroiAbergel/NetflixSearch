@@ -1,25 +1,108 @@
-import { __decorate } from "tslib";
-import { Component, HostListener } from '@angular/core';
+import { __decorate, __param } from "tslib";
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CardModule } from 'primeng/card';
 let ResultsComponent = class ResultsComponent {
-    onWindowScroll() {
-        const elements = document.querySelectorAll('.fade-in-element');
-        elements.forEach((element) => {
-            const rect = element.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                element.classList.add('in-view');
+    constructor(platformId) {
+        this.platformId = platformId;
+    }
+    loadResults(Search, TypeofSearch) {
+        if (isPlatformBrowser(this.platformId)) {
+            const ResultsDiv = document.getElementById("ResultsShowsDiv");
+            if (ResultsDiv) {
+                if (TypeofSearch.toLowerCase() === "movie") {
+                    fetch(`http://localhost:3000/netflix/movie?title=${Search}`)
+                        .then(response => {
+                        return response.json();
+                    })
+                        .then(res => {
+                        let data = res;
+                        ResultsDiv.innerHTML = "";
+                        for (let i = 0; i < data.length; i++) {
+                            ResultsDiv.innerHTML += `
+                  <div ng-reflect-ng-class="p-card p-component" 
+                       ng-reflect-ng-style="[object Object]" 
+                       data-pc-name="card" 
+                       class="p-card p-component" 
+                       style="width: 280px; height: 415px;">
+                    <div class="p-card-header ng-star-inserted">
+                      <img _ngcontent-ng-c3007106397="" 
+                           alt="Card" 
+                           style="width: 100%; max-height: 200px;" 
+                           src="` + data[i].Image_URL + `" 
+                           class="ng-tns-c3007106397-0 ng-star-inserted">
+                    </div>
+                    <div class="p-card-body">
+                      <div class="p-card-title ng-star-inserted" 
+                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"> 
+                        ` + data[i].title + ` 
+                      </div>
+                      <div class="p-card-subtitle ng-star-inserted" 
+                           style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> 
+                        ` + data[i].type + ` 
+                      </div>
+                      <div style="overflow-wrap: break-word; overflow-y: auto; max-height: 100px;">
+                        <p _ngcontent-ng-c3007106397>
+                          ` + data[i].listed_in + ` 
+                        </p>
+                      </div>
+                    </div>
+                  </div>`;
+                        }
+                    })
+                        .catch(error => {
+                        console.log(error);
+                    });
+                }
+                else if (TypeofSearch.toLowerCase() === "series") {
+                    fetch(`http://localhost:3000/netflix/series?title=${Search}`)
+                        .then(response => {
+                        return response.json();
+                    })
+                        .then(res => {
+                        let data = res;
+                        ResultsDiv.innerHTML = "";
+                        for (let i = 0; i < data.length; i++) {
+                            ResultsDiv.innerHTML += `
+                  <div ng-reflect-ng-class="p-card p-component" 
+                       ng-reflect-ng-style="[object Object]" 
+                       data-pc-name="card" 
+                       class="p-card p-component" 
+                       style="width: 280px; height: 415px;">
+                    <div class="p-card-header ng-star-inserted">
+                      <img _ngcontent-ng-c3007106397="" 
+                           alt="Card" 
+                           style="width: 100%; max-height: 200px;" 
+                           src="` + data[i].Image_URL + `" 
+                           class="ng-tns-c3007106397-0 ng-star-inserted">
+                    </div>
+                    <div class="p-card-body">
+                      <div class="p-card-title ng-star-inserted" 
+                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"> 
+                        ` + data[i].title + ` 
+                      </div>
+                      <div class="p-card-subtitle ng-star-inserted" 
+                           style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> 
+                        ` + data[i].type + ` 
+                      </div>
+                      <div style="overflow-wrap: break-word; overflow-y: auto; max-height: 100px;">
+                        <p _ngcontent-ng-c3007106397>
+                          ` + data[i].listed_in + ` 
+                        </p>
+                      </div>
+                    </div>
+                  </div>`;
+                        }
+                    })
+                        .catch(error => {
+                        console.log(error);
+                    });
+                }
             }
-            else {
-                element.classList.remove('in-view');
-            }
-        });
+        }
     }
 };
-__decorate([
-    HostListener('window:scroll', [])
-], ResultsComponent.prototype, "onWindowScroll", null);
 ResultsComponent = __decorate([
     Component({
         selector: 'app-results',
@@ -27,21 +110,8 @@ ResultsComponent = __decorate([
         imports: [CommonModule, CardModule,],
         templateUrl: './results.component.html',
         styleUrl: './results.component.css',
-        animations: [
-            trigger('fadeIn', [
-                state('void', style({
-                    opacity: 0,
-                    transform: 'translateY(20px)'
-                })),
-                transition(':enter', [
-                    animate('0.5s ease-in', style({
-                        opacity: 1,
-                        transform: 'translateY(0)'
-                    }))
-                ])
-            ])
-        ]
-    })
+    }),
+    __param(0, Inject(PLATFORM_ID))
 ], ResultsComponent);
 export { ResultsComponent };
 //# sourceMappingURL=results.component.js.map

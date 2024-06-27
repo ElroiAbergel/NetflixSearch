@@ -13,7 +13,7 @@ let HomeScreenComponent = class HomeScreenComponent {
             },
             {
                 label: 'Series',
-                icon: 'pi pi-fw pi-search',
+                icon: 'pi pi-fw pi-desktop',
                 url: '/series'
             },
             {
