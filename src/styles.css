@@ -56,6 +56,9 @@ body{
 
 .p-card{
     border-radius: 30px;
+    height: fit-content;
+    min-height: 240px;
+    width: 280px;
 }
 
 
@@ -63,7 +66,7 @@ body{
     border-radius: 30px;
 }
 .textAndBtnsDiv{
-    width: 100%; height: 90%; display: flex; align-items: center; padding-top: 200px;justify-content: center; flex-direction: column; gap:240px;
+    width: 100%; height: 100%; display: flex; align-items: center; padding-top: 140px;justify-content: center; flex-direction: column; gap:240px;
 }
 .textDiv{
     color: white; display: flex; align-items: center; justify-content: center; flex-direction: column; 
