@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -13,12 +13,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class ResultsComponent {
   data: NetflixDataModel[] = [];
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  @Input("TypeOfSearch")
+  TypeOfSearch!: string;
+  @Input("Random")
+  Random!: boolean;
+  ngOnInit() {
+    if(this.Random)
+      this.loadRandom();
+  }
 
   loadResults(Search: string | null | undefined, TypeofSearch: string) {
-    if (isPlatformBrowser(this.platformId)) {
-      const ResultsDiv = document.getElementById("ResultsShowsDiv");
-      if (ResultsDiv) {
+
+        this.data = [];
         if (TypeofSearch.toLowerCase() === "movie") {
           fetch(`http://localhost:3000/netflix/movie?title=${Search}`)
             .then(response => {
@@ -44,7 +50,26 @@ export class ResultsComponent {
               console.log(error);
             });
         }
-      }
+
+      
     }
-  }
+  
+
+  loadRandom() {
+
+      fetch("http://localhost:3000/netflix/random")
+        .then(response => {
+          return response.json();
+        })
+        .then(res => {
+          for (let resultData of res) this.data.push({ title: resultData.title, type: resultData.type, listed_in: resultData.listed_in, Image_URL: resultData.Image_URL });
+
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    
+  
+}
+
 }
