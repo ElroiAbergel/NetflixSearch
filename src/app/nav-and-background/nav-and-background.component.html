@@ -9,29 +9,6 @@
         <ng-template pTemplate="end">
             <div class="glowyText">Netflix Search</div>
         </ng-template>
-
     </p-menubar>
-    @if (TypeOfScreen === "Home") {
-    <div class="textAndBtnsDiv">
-        <div
-            class="textDiv">
-            <h1 class="h1Text">Netflix Search</h1>
-            <span class="spanText">Netflix database search engine</span>
-        </div>
-        <div class="btnsDiv"> <p-button routerLink="/movies"
-                label="Movies"></p-button>
-            <p-button label="Series" routerLink="/series"></p-button>
-        </div>
-    </div>
-    <app-results [Random]="true"></app-results>
-}
-    @if (TypeOfScreen === "Search") {
-        <div class="backgroundDiv">
-            <div class="SearchDiv">
-                <input id="search" type="text" placeholder="Enter {{TypeOfSearch}} name" pInputText class="p-inputtext serachinput">
-                <p-button severity="secondary" (click)="ScrollAndShowResults()"><i style="font-size: 5rem; " class="pi pi-fw pi-search searchBtn"></i></p-button>
-            </div>
-        </div>
-        <app-results [Random]="false"></app-results>
-        }
+    <ng-content></ng-content>
 </div>
